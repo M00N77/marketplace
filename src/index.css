@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Добавим светло-серый фон для всего сайта, как на WB */
+body {
+  @apply bg-gray-50;
+}
