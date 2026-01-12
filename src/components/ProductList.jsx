@@ -4,12 +4,14 @@ const ProductList = ({ products }) => {
 
 
     return (
-        <div className=" container  mx-auto grid grid-cols-7 gap-5 ">
+        <div>
+        <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-5 pt-20">
             {
                 products.map(product => (
                     <ProductCard product={product} key={product.id} />
                 ))
             }</div>
+            </div>
     )
 
 

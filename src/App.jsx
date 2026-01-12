@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react"
+import Header from "./components/Header"
 import ProductList from "./components/ProductList"
-import CategoryFilter from "./components/CategoryFilter"
 
 function App() {
 
@@ -32,15 +32,18 @@ function App() {
   }
 
   return (
-    <>
+    < >
+     
+        <Header
+          categories={categories}
+          setCategory={setCategory}
+        />
 
-      <CategoryFilter categories={categories} setCategory = {setCategory}/>
+        <ProductList products={category !== 'all'
+          ? filteredProducts
+          : products
+        } />
 
-
-      <ProductList products={category !== 'all'
-        ? filteredProducts
-        : products
-      }/>
     </>
   )
 }
