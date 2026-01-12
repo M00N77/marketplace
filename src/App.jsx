@@ -1,10 +1,22 @@
 
 import { useState,useEffect } from "react"
 import ProductList from "./components/ProductList"
+import CategoryFilter from "./components/CategoryFilter"
 
 function App() {
 
   const [products, setProducts] = useState([])
+
+  const categories = [
+   { id: 'all', name: 'Все' },
+   { id: 'electronics', name: 'Электроника' },
+   { id: 'jewelery', name: 'Ювелирка' },
+];
+
+  const [category,setCategory] = useState('all')
+
+  const filteredProducts = products.filter(prod => prod.id === category)
+
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -13,7 +25,7 @@ function App() {
 
   }, [])
 
-  console.log(products);
+  
 
   if (products.length === 0) {
         return <h2>Загрузка данных...</h2>
@@ -21,7 +33,11 @@ function App() {
 
   return (
     <>
-      <ProductList products={products} />
+      
+      <CategoryFilter categories = {categories} />
+
+      
+      <ProductList products={category!=='all'?filteredProducts:products} />
     </>
   )
 }
