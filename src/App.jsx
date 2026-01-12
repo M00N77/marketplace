@@ -12,12 +12,14 @@ function App() {
     { id: 'electronics', name: 'Электроника' },
     { id: 'jewelery', name: 'Ювелирка' },
   ];
-
   const [category, setCategory] = useState('all')
 
-  const filteredProducts = products.filter(prod => prod.category === category)
 
 
+  const [searchValue, setSearchValue] = useState('')
+
+  const resultProducts = products.filter(prod => (prod.category === category || category === 'all') && prod.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
+  
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
       .then(response => response.json())
@@ -33,16 +35,14 @@ function App() {
 
   return (
     < >
-     
-        <Header
-          categories={categories}
-          setCategory={setCategory}
-        />
 
-        <ProductList products={category !== 'all'
-          ? filteredProducts
-          : products
-        } />
+      <Header
+        setSearchValue={setSearchValue}
+        categories={categories}
+        setCategory={setCategory}
+      />
+
+      <ProductList products={resultProducts} />
 
     </>
   )

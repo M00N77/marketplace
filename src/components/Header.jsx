@@ -2,13 +2,13 @@ import CategoryFilter from "./CategoryFilter"
 
 
 
-const Header = ({ categories, setCategory }) => {
+const Header = ({ categories, setCategory,setSearchValue }) => {
 
 
 
     return (
-        <div className="w-full" >
-            <div className="flex justify-between py-5">
+        <header className="w-full" >
+            <div className="container mx-auto  flex justify-between py-5">
 
                 <div >
                     <button className="flex gap-x-1 text-center">
@@ -19,15 +19,19 @@ const Header = ({ categories, setCategory }) => {
                         </svg>
                         <span>Москва</span>
                     </button>
-                    <img src="https://static-basket-01.wbbasket.ru/vol2/site/i/v3/header/logo-new-year-2026.webp" alt="" />
+                    <img src="https://static-basket-01.wbbasket.ru/vol2/site/i/v3/header/logo-new-year-2026.webp" alt="" className="w-[200px]"/>
                 </div>
 
-                <div className="w-full flex">
+                <div className="flex-1 flex">
                     <CategoryFilter
                         categories={categories}
                         setCategory={setCategory}
                     />
-                    <input type="search" placeholder="Найти на Wildberries" className="w-full" />
+                    <input 
+                    onChange={(e) => setSearchValue(e.target.value)}
+                    type="search" 
+                    placeholder="Найти на Wildberries" 
+                    className="w-full p-5" />
                 </div>
 
                 <div className="flex">
@@ -60,7 +64,7 @@ const Header = ({ categories, setCategory }) => {
                     </div>
 
             </div>
-        </div>
+        </header>
     )
 }
 export default Header
