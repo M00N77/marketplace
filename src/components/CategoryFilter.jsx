@@ -1,6 +1,6 @@
 const CategoryFilter = ({categories,setCategory}) => {
     return (
-        <div>
+        <div className="flex flex-col justify-start" >
             {categories.map(category => (
                 <button key={category.id} onClick={()=>setCategory(category.id)} >{category.name}</button>
             ))}
