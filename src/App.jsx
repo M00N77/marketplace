@@ -1,7 +1,9 @@
-
+import { Routes,Route } from "react-router-dom"
 import { useState, useEffect } from "react"
 import Header from "./components/Header"
-import ProductList from "./components/ProductList"
+import HomePage from './pages/HomePage'
+import CartPage from "./pages/CartPage"
+
 
 function App() {
 
@@ -19,7 +21,7 @@ function App() {
   const [searchValue, setSearchValue] = useState('')
 
   const resultProducts = products.filter(prod => (prod.category === category || category === 'all') && prod.title.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
-  
+
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
       .then(response => response.json())
@@ -42,7 +44,12 @@ function App() {
         setCategory={setCategory}
       />
 
-      <ProductList products={resultProducts} />
+      <Routes>
+        
+        <Route path="/" element={<HomePage products={resultProducts} />} />
+        <Route path="cart" element={<CartPage/>} />  
+
+      </Routes>
 
     </>
   )
